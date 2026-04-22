@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="auth-card">
+    <header>
+        <h1>Welcome Back</h1>
+        <p>Login to identify your dog's breed instantly.</p>
+    </header>
+
+    <form action="{{ url_for('login') }}" method="POST" class="auth-form">
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Enter username">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter password">
+        </div>
+        <button type="submit" class="primary-btn">Login</button>
+    </form>
+    
+    <p class="auth-footer">
+        Don't have an account? <a href="{{ url_for('register') }}">Create an Account</a>
+    </p>
+</div>
+</div>
+{% endblock %}

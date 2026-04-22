@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="upload-view">
+    <header>
+        <h1>Discover the Breed</h1>
+        <p>Upload a photo of a dog and let our advanced AI instantly identify its breed.</p>
+    </header>
+
+    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" id="upload-form">
+        <section class="upload-section">
+            <div id="drop-area" class="drop-area">
+                <input type="file" id="file-input" name="file" accept="image/*" hidden required>
+                
+                <div class="drop-content" id="drop-content">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p class="drag-text">Drag & drop your dog image here</p>
+                    <p class="or-text">or</p>
+                    <button type="button" class="browse-btn" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                </div>
+
+                <div id="preview-container" class="preview-container hidden">
+                    <img id="image-preview" src="" alt="Preview">
+                    <button type="button" id="remove-btn" class="remove-btn" aria-label="Remove image">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" id="predict-btn" class="primary-btn hidden">
+                Identify Breed
+                <span id="spinner" class="spinner hidden"></span>
+            </button>
+        </section>
+    </form>
+</div>
+</div>
+{% endblock %}

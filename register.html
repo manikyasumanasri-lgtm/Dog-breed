@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="auth-card">
+    <header>
+        <h1>Create Account</h1>
+        <p>Join us and access our deep learning tools.</p>
+    </header>
+
+    <form action="{{ url_for('register') }}" method="POST" class="auth-form">
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Choose a username">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Choose a password">
+        </div>
+        <button type="submit" class="primary-btn">Sign Up</button>
+    </form>
+    
+    <p class="auth-footer">
+        Already have an account? <a href="{{ url_for('login') }}">Login instead</a>
+    </p>
+</div>
+</div>
+{% endblock %}

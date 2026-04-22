@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<div class="result-view">
+    <div class="result-card">
+        <h2>Prediction Result 🎉</h2>
+        
+        <div class="result-image-box">
+            <img src="{{ prediction.image_url }}" alt="Uploaded dog" class="result-image">
+        </div>
+
+        <div class="result-data">
+            <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">Top AI Predictions</h3>
+            {% for res in prediction.top_results %}
+            <div style="margin-bottom: 1.25rem; text-align: left;">
+                <div class="confidence-label">
+                    <span style="font-size: 1.1rem;">{{ res.breed }}</span>
+                    <span>{{ res.confidence }}%</span>
+                </div>
+                <div class="progress-bar" style="height: 8px;">
+                    <div class="progress-fill" 
+                         style="width: {{ res.bar_width }}%;
+                                background: {% if res.bar_width > 80 %}linear-gradient(90deg, #10b981, #34d399){% elif res.bar_width > 50 %}linear-gradient(90deg, #f59e0b, #fbbf24){% else %}linear-gradient(90deg, #ef4444, #f87171){% endif %}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <a href="{{ url_for('app_route') }}" class="primary-btn mt-4">Try Another Image</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
